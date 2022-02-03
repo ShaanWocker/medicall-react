@@ -61,17 +61,6 @@ function Navbar() {
                 Contact Us
               </NavLink>
             </li>
-            <li className='nav-item'>
-              <NavLink
-                to='/compliance'
-                alt=''
-                className={(n) =>
-                  n.isActive ? 'nav-link nav-item-active' : 'nav-link'
-                }
-              >
-                Compliance
-              </NavLink>
-            </li>
           </ul>
         </div>
       </div>

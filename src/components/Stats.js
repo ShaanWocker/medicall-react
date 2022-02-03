@@ -9,29 +9,33 @@ const Stats = () => {
   let newCases = {};
   let closedCases = {};
 
-  useEffect(async () => {
-    const fetchAndReturnData = async (caseURL) => {
-      const res = await fetch(`${API_URL}${caseURL}`);
-      const data = await res.json();
-      return data;
+  useEffect(() => {
+    const getData = async () => {
+      const fetchAndReturnData = async (caseURL) => {
+        const res = await fetch(`${API_URL}${caseURL}`);
+        const data = await res.json();
+        return data;
+      };
+
+      newCases.today = await fetchAndReturnData('/new/today');
+      newCases.thisweek = await fetchAndReturnData('/new/thisweek');
+      newCases.thismonth = await fetchAndReturnData('/new/thismonth');
+      newCases.thisyear = await fetchAndReturnData('/new/thisyear');
+
+      closedCases.today = await fetchAndReturnData('/closed/today');
+      closedCases.thisweek = await fetchAndReturnData('/closed/thisweek');
+      closedCases.thismonth = await fetchAndReturnData('/closed/thismonth');
+      closedCases.thisyear = await fetchAndReturnData('/closed/thisyear');
+
+      setCases({
+        newCases,
+        closedCases,
+      });
+
+      setLoading(false);
     };
 
-    newCases.today = await fetchAndReturnData('/new/today');
-    newCases.thisweek = await fetchAndReturnData('/new/thisweek');
-    newCases.thismonth = await fetchAndReturnData('/new/thismonth');
-    newCases.thisyear = await fetchAndReturnData('/new/thisyear');
-
-    closedCases.today = await fetchAndReturnData('/closed/today');
-    closedCases.thisweek = await fetchAndReturnData('/closed/thisweek');
-    closedCases.thismonth = await fetchAndReturnData('/closed/thismonth');
-    closedCases.thisyear = await fetchAndReturnData('/closed/thisyear');
-
-    setCases({
-      newCases,
-      closedCases,
-    });
-
-    setLoading(false);
+    getData();
     // eslint-disable-next-line
   }, []);
 

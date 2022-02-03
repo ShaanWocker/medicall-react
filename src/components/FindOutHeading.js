@@ -13,6 +13,7 @@ function FindOutHeading() {
           <img
             src={slider1}
             className='d-block w-100 '
+            alt='Image'
             style={{ height: '500px' }}
           />
         </div>

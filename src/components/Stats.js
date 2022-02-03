@@ -32,6 +32,7 @@ const Stats = () => {
     });
 
     setLoading(false);
+    // eslint-disable-next-line
   }, []);
 
   return (
